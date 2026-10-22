@@ -10,8 +10,8 @@ A Salesforce DX proof of concept for the public Help Center wireframe: purple/ye
 
 ## Org prerequisites
 1. Enable Salesforce Knowledge and an LWR Experience Cloud site.
-2. On `Knowledge__kav`, create `Display_as_FAQ__c` (Checkbox) and `FAQ_Order__c` (Number 3,0). Verify field API names.
-3. Publish English (`en_US`) articles with Public Knowledge Base visibility. Set FAQ flags/order for the FAQ subset.
+2. No custom FAQ fields are required. The FAQ section shows up to 10 eligible public Knowledge articles, sorted alphabetically by Title.
+3. Publish English (`en_US`) articles with Public Knowledge Base visibility. All eligible public articles may appear in FAQs; consider Data Categories later for curated FAQ selection.
 4. Create LWR named pages with API names `Help_Center` and `Help_Article`. Place the matching LWCs on each page.
 5. Configure the shared site header with Home, Help, Login, Register navigation; login and registration depend on site authentication setup.
 6. Grant the Apex class and minimum Knowledge/field access to the site guest user and authenticated audiences as required. Test visibility in an incognito session.
