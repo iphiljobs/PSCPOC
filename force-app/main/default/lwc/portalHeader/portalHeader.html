@@ -1,0 +1,43 @@
+<template>
+    <header class="portal-header">
+        <div class="header-inner">
+            <a class="brand" href={homeHref} onclick={navigateHome} aria-label="United Department of Health, Home">
+                <span class="brand-logo" aria-hidden="true">
+                    <lightning-icon icon-name="utility:heart" size="medium" alternative-text=""></lightning-icon>
+                </span>
+                <span class="brand-name">UNITED DEPARTMENT<br />OF HEALTH</span>
+            </a>
+            <button class="mobile-toggle" type="button" aria-label="Toggle navigation"
+                aria-expanded={mobileMenuOpen} aria-controls="portal-nav" onclick={toggleMobileMenu}>
+                <lightning-icon icon-name={mobileIcon} size="small" alternative-text=""></lightning-icon>
+            </button>
+            <div id="portal-nav" class={navigationClass}>
+                <nav class="nav-links" aria-label="Primary navigation">
+                    <a href={homeHref} data-page="Home" onclick={navigateToPage}
+                        class={homeClass} aria-current={homeAriaCurrent}>Home</a>
+                    <a href={helpHref} data-page="Help_Center" onclick={navigateToPage}
+                        class={helpClass} aria-current={helpAriaCurrent}>Help</a>
+                    <template lwc:if={isAuthenticated}>
+                        <a href={dashboardHref} data-page="Dashboard" onclick={navigateToPage}
+                            class={dashboardClass} aria-current={dashboardAriaCurrent}>Dashboard</a>
+                    </template>
+                </nav>
+                <div class="account-actions">
+                    <template lwc:if={isGuestUser}>
+                        <a class="login-button" href={loginHref}>Log In</a>
+                        <a class="register-button" href={registerHref}>Register</a>
+                    </template>
+                    <template lwc:else>
+                        <lightning-button-menu alternative-text="Profile menu"
+                            menu-alignment="right" icon-name="utility:user" variant="border-filled"
+                            onselect={handleProfileMenu} class="profile-menu">
+                            <lightning-menu-item value="profile" label={profileName}></lightning-menu-item>
+                            <lightning-menu-item value="settings" label="Account Settings"></lightning-menu-item>
+                            <lightning-menu-item value="logout" label="Log Out"></lightning-menu-item>
+                        </lightning-button-menu>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </header>
+</template>
