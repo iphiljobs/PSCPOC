@@ -24,7 +24,8 @@ public with sharing class GenericSearchDataTableController {
 
         Integer size = pageSize == null ? 20 : Math.max(1, Math.min(100, pageSize));
         Integer page = pageNumber == null ? 1 : Math.max(1, pageNumber);
-        Long offsetValue = Long.valueOf(page - 1) * size;
+        if (page > 2001) throw new AuraHandledException('Maximum supported offset is 2000. Narrow your search.');
+        Integer offsetValue = (page - 1) * size;
         if (offsetValue > 2000) throw new AuraHandledException('Maximum supported offset is 2000. Narrow your search.');
 
         List<String> selectFields = new List<String>{ 'Id' };
@@ -32,7 +33,7 @@ public with sharing class GenericSearchDataTableController {
 
         Map<String, Object> binds = new Map<String, Object>{
             'limitValue' => size,
-            'offsetValue' => Integer.valueOf(offsetValue)
+            'offsetValue' => offsetValue
         };
         String filterClause = '';
         if (!String.isBlank(searchTerm)) {
@@ -89,7 +90,6 @@ public with sharing class GenericSearchDataTableController {
             type == Schema.DisplayType.TextArea ||
             type == Schema.DisplayType.Email ||
             type == Schema.DisplayType.Phone ||
-            type == Schema.DisplayType.Url ||
-            type == Schema.DisplayType.Picklist;
+            type == Schema.DisplayType.Url;
     }
 }
