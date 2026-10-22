@@ -4,6 +4,7 @@ import isGuest from '@salesforce/user/isGuest';
 import userId from '@salesforce/user/Id';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import USER_NAME from '@salesforce/schema/User.Name';
+import basePath from '@salesforce/community/basePath';
 
 export default class PortalHeader extends NavigationMixin(LightningElement) {
     @api homePageName = 'Home';
@@ -47,8 +48,9 @@ export default class PortalHeader extends NavigationMixin(LightningElement) {
     get dashboardAriaCurrent() { return this.activePage === this.dashboardPageName ? 'page' : null; }
 
     siteUrl(relativePath) {
+        const root = (basePath || '').replace(/\/$/, '');
         const path = (relativePath || '').replace(/^\/+/, '');
-        return path ? `/${path}` : '/';
+        return path ? `${root}/${path}` : `${root}/`;
     }
     toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen; }
     navigateHome(event) {
