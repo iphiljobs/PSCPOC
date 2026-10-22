@@ -1,0 +1,28 @@
+<template>
+    <section class="table-container" aria-label="Searchable records">
+        <div class="toolbar">
+            <lightning-input type="search" label="Search records" placeholder="Search records..."
+                value={searchTerm} onchange={handleSearchChange} class="search-input"></lightning-input>
+            <span class="count" aria-live="polite">{countLabel}</span>
+        </div>
+        <template lwc:if={configurationError}>
+            <div class="message error" role="alert">{configurationError}</div>
+        </template>
+        <template lwc:else>
+            <template lwc:if={errorMessage}>
+                <div class="message error" role="alert">{errorMessage}</div>
+            </template>
+            <lightning-datatable key-field="Id" data={rows} columns={columns}
+                hide-checkbox-column onrowaction={handleRowAction}
+                is-loading={isLoading} aria-label="Record search results"></lightning-datatable>
+            <template lwc:if={showEmpty}>
+                <p class="message">No matching records found.</p>
+            </template>
+            <div class="pagination">
+                <lightning-button label="Previous" onclick={previousPage} disabled={disablePrevious}></lightning-button>
+                <span aria-live="polite">{pageLabel}</span>
+                <lightning-button label="Next" onclick={nextPage} disabled={disableNext}></lightning-button>
+            </div>
+        </template>
+    </section>
+</template>
