@@ -4,7 +4,6 @@ import isGuest from '@salesforce/user/isGuest';
 import userId from '@salesforce/user/Id';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import USER_NAME from '@salesforce/schema/User.Name';
-import basePath from '@salesforce/community/basePath';
 
 export default class PortalHeader extends NavigationMixin(LightningElement) {
     @api homePageName = 'Home';
@@ -16,13 +15,16 @@ export default class PortalHeader extends NavigationMixin(LightningElement) {
     @api settingsPath = 'settings';
     mobileMenuOpen = false;
     activePage = '';
+    pageReferenceType = '';
+    currentUserId = isGuest ? undefined : userId;
 
     @wire(CurrentPageReference)
     pageReferenceChanged(pageRef) {
         this.activePage = pageRef?.attributes?.name || '';
+        this.pageReferenceType = pageRef?.type || '';
     }
 
-    @wire(getRecord, { recordId: userId, fields: [USER_NAME] })
+    @wire(getRecord, { recordId: '$currentUserId', fields: [USER_NAME] })
     userRecord;
 
     get isGuestUser() { return isGuest; }
@@ -45,9 +47,8 @@ export default class PortalHeader extends NavigationMixin(LightningElement) {
     get dashboardAriaCurrent() { return this.activePage === this.dashboardPageName ? 'page' : null; }
 
     siteUrl(relativePath) {
-        const root = (basePath || '').replace(/\/$/, '');
         const path = (relativePath || '').replace(/^\/+/, '');
-        return path ? `${root}/${path}` : `${root}/`;
+        return path ? `/${path}` : '/';
     }
     toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen; }
     navigateHome(event) {
@@ -66,9 +67,10 @@ export default class PortalHeader extends NavigationMixin(LightningElement) {
     }
     navigateNamedPage(name) {
         this.mobileMenuOpen = false;
+        const isCommunity = this.pageReferenceType.startsWith('comm__');
         this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: { name }
+            type: isCommunity ? 'comm__namedPage' : 'standard__appPage',
+            attributes: isCommunity ? { name } : { appPageName: name }
         });
     }
     handleProfileMenu(event) {

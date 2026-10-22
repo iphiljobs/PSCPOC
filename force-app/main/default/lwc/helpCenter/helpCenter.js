@@ -1,5 +1,5 @@
 import { LightningElement, wire } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 import getFaqs from '@salesforce/apex/HelpCenterController.getFaqs';
 import searchArticles from '@salesforce/apex/HelpCenterController.searchArticles';
 
@@ -12,6 +12,12 @@ export default class HelpCenter extends NavigationMixin(LightningElement) {
     errorMessage = '';
     faqError = '';
     searchSequence = 0;
+    pageReferenceType = '';
+
+    @wire(CurrentPageReference)
+    wiredPageReference(pageRef) {
+        this.pageReferenceType = pageRef?.type || '';
+    }
 
     @wire(getFaqs)
     wiredFaqs({ data, error }) {
@@ -61,9 +67,10 @@ export default class HelpCenter extends NavigationMixin(LightningElement) {
             : faq);
     }
     openArticle(event) {
+        const isCommunity = this.pageReferenceType.startsWith('comm__');
         this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: { name: 'Help_Article' },
+            type: isCommunity ? 'comm__namedPage' : 'standard__appPage',
+            attributes: isCommunity ? { name: 'Help_Article' } : { appPageName: 'Help_Article' },
             state: { article: event.currentTarget.dataset.url }
         });
     }

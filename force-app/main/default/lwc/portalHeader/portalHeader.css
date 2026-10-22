@@ -1,4 +1,5 @@
-:host { display:block; font-family:Arial,sans-serif; }
+:host { display:block; margin:0; padding:0; font-family:Arial,sans-serif; }
+.portal-header { margin:0; }
 .portal-header { background:#292465; color:#fff; border-bottom:3px solid #e5db28; }
 .header-inner { max-width:1200px; min-height:78px; padding:12px 24px; margin:auto; display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff; flex-shrink:0; }

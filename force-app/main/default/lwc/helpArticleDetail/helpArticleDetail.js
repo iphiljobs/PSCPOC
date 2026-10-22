@@ -6,8 +6,10 @@ export default class HelpArticleDetail extends NavigationMixin(LightningElement)
     article;
     errorMessage;
     requestNumber = 0;
+    pageReferenceType = '';
     @wire(CurrentPageReference)
     async handlePageReference(pageRef) {
+        this.pageReferenceType = pageRef?.type || '';
         const urlName = pageRef?.state?.article;
         const request = ++this.requestNumber;
         this.article = null;
@@ -23,9 +25,10 @@ export default class HelpArticleDetail extends NavigationMixin(LightningElement)
         }
     }
     backToHelp() {
+        const isCommunity = this.pageReferenceType.startsWith('comm__');
         this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: { name: 'Help_Center' }
+            type: isCommunity ? 'comm__namedPage' : 'standard__appPage',
+            attributes: isCommunity ? { name: 'Help_Center' } : { appPageName: 'Help_Center' }
         });
     }
 }

@@ -3,7 +3,7 @@
         <div class="header-inner">
             <a class="brand" href={homeHref} onclick={navigateHome} aria-label="United Department of Health, Home">
                 <span class="brand-logo" aria-hidden="true">
-                    <lightning-icon icon-name="utility:heart" size="medium" alternative-text=""></lightning-icon>
+                    <lightning-icon icon-name="utility:truck" size="medium" alternative-text=""></lightning-icon>
                 </span>
                 <span class="brand-name">UNITED DEPARTMENT<br />OF HEALTH</span>
             </a>
@@ -15,12 +15,12 @@
                 <nav class="nav-links" aria-label="Primary navigation">
                     <a href={homeHref} data-page="Home" onclick={navigateToPage}
                         class={homeClass} aria-current={homeAriaCurrent}>Home</a>
-                    <a href={helpHref} data-page="Help_Center" onclick={navigateToPage}
-                        class={helpClass} aria-current={helpAriaCurrent}>Help</a>
                     <template lwc:if={isAuthenticated}>
                         <a href={dashboardHref} data-page="Dashboard" onclick={navigateToPage}
                             class={dashboardClass} aria-current={dashboardAriaCurrent}>Dashboard</a>
                     </template>
+                    <a href={helpHref} data-page="Help_Center" onclick={navigateToPage}
+                        class={helpClass} aria-current={helpAriaCurrent}>Help</a>
                 </nav>
                 <div class="account-actions">
                     <template lwc:if={isGuestUser}>
