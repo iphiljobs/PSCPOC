@@ -23,9 +23,9 @@ public with sharing class HelpCenterController {
         for (Knowledge__kav a : [
             SELECT Id, Title, Summary, UrlName FROM Knowledge__kav
             WHERE PublishStatus = 'Online' AND Language = 'en_US'
-              AND IsVisibleInPkb = true AND Display_as_FAQ__c = true
+              AND IsVisibleInPkb = true
             WITH USER_MODE
-            ORDER BY FAQ_Order__c ASC NULLS LAST, Title ASC LIMIT 30
+            ORDER BY Title ASC LIMIT 10
         ]) output.add(new ArticleDTO(a));
         return output;
     }
