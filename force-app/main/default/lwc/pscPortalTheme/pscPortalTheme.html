@@ -1,0 +1,44 @@
+<template>
+    <div class="site-shell">
+        <div class="site-header" data-f6-region>
+            <c-portal-header></c-portal-header>
+        </div>
+        <main id="main-content" class="site-main" data-f6-region>
+            <slot></slot>
+        </main>
+        <footer class="site-footer" data-f6-region>
+            <div class="footer-grid">
+                <section class="footer-about">
+                    <h2>INDOT Permit Portal</h2>
+                    <p>The Indiana Department of Transportation (INDOT)'s official online permit application and management system for contractors, utilities, and government agencies.</p>
+                </section>
+                <nav aria-label="Applications footer links">
+                    <h2>APPLICATIONS</h2>
+                    <ul>
+                        <li><a href={applyPermitUrl}>Apply for a Permit</a></li>
+                        <li><a href={replacementPlatesUrl}>Replacement Plates</a></li>
+                        <li><a href={billboardTransferUrl}>Billboard Ownership Transfer</a></li>
+                        <li><a href={dashboardUrl}>My Dashboard</a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="Support footer links">
+                    <h2>SUPPORT</h2>
+                    <ul>
+                        <li><a href={helpUrl}>Help Center</a></li>
+                        <li><a href={complaintUrl}>File a Complaint</a></li>
+                        <li><a href={contactUrl}>Contact INDOT</a></li>
+                        <li><a href={districtUrl}>District Offices</a></li>
+                    </ul>
+                </nav>
+                <nav aria-label="INDOT footer links">
+                    <h2>INDOT</h2>
+                    <ul>
+                        <li><a href="https://www.in.gov/indot/" target="_blank" rel="noopener noreferrer">Indiana.gov</a></li>
+                        <li><a href="https://www.in.gov/core/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                        <li><a href="https://www.in.gov/core/terms.html" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</template>
