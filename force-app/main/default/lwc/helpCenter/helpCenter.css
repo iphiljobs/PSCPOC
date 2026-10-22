@@ -1,6 +1,8 @@
 :host { display:block; color:#202333; font-family:Arial,sans-serif; }
 .container { width:min(1100px,calc(100% - 40px)); margin:0 auto; }
 .hero { background:linear-gradient(120deg,#171340,#302b85); color:#fff; padding:55px 0 42px; border-bottom:4px solid #e5e000; }
+.hero-redacted { margin:0 0 18px; height:14px; display:flex; align-items:center; overflow:hidden; }
+.redacted-glyphs { display:block; color:#e5e000; font-family:monospace; font-size:12px; font-weight:800; letter-spacing:1px; line-height:1; opacity:.82; white-space:nowrap; user-select:none; }
 .hero h1 { font-size:clamp(28px,3vw,40px); margin:0 0 14px; font-weight:700; }
 .hero p { color:#e0e0ec; margin-bottom:26px; font-size:15px; }
 .search-box { display:flex; align-items:center; background:white; border-radius:40px; padding:5px 6px 5px 18px; max-width:560px; gap:8px; }
