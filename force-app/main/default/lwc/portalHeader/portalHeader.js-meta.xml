@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>PSC Portal Header</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="homePageName" type="String" label="Home page API name" default="Home"/>
+            <property name="helpPageName" type="String" label="Help page API name" default="Help_Center"/>
+            <property name="dashboardPageName" type="String" label="Dashboard page API name" default="Dashboard"/>
+            <property name="loginPath" type="String" label="Login URL path (relative to site)" default="login"/>
+            <property name="registerPath" type="String" label="Registration URL path (relative to site)" default="register"/>
+            <property name="profilePath" type="String" label="Profile URL path (relative to site)" default="profile"/>
+            <property name="settingsPath" type="String" label="Settings URL path (relative to site)" default="settings"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
