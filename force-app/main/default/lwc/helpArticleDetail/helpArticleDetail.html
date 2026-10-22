@@ -1,0 +1,11 @@
+<template>
+    <main class="slds-var-p-around_large">
+        <template lwc:if={article}>
+            <h1 class="slds-text-heading_large">{article.title}</h1>
+            <div class="slds-var-m-top_medium"><p>{article.summary}</p></div>
+        </template>
+        <template lwc:elseif={errorMessage}><p role="alert">{errorMessage}</p></template>
+        <template lwc:else><lightning-spinner alternative-text="Loading article"></lightning-spinner></template>
+        <button class="slds-button slds-button_neutral slds-var-m-top_large" onclick={backToHelp}>Back to Help Center</button>
+    </main>
+</template>
