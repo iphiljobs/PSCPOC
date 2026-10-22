@@ -87,7 +87,6 @@ public with sharing class GenericSearchDataTableController {
 
     private static Boolean isSearchableType(Schema.DisplayType type) {
         return type == Schema.DisplayType.String ||
-            type == Schema.DisplayType.TextArea ||
             type == Schema.DisplayType.Email ||
             type == Schema.DisplayType.Phone ||
             type == Schema.DisplayType.Url;
