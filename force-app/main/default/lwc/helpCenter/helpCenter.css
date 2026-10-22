@@ -5,21 +5,4 @@
 .department-name-text { display:block; color:#e5e000; font-family:monospace; font-size:12px; font-weight:800; letter-spacing:1px; line-height:1; opacity:.82; white-space:nowrap; user-select:none; }
 .hero h1 { font-size:clamp(28px,3vw,40px); margin:0 0 14px; font-weight:700; }
 .hero p { color:#e0e0ec; margin:0; font-size:15px; }
-.search-box { display:flex; align-items:center; background:white; border-radius:40px; padding:5px 6px 5px 18px; max-width:560px; gap:8px; }
-.search-input { flex:1; min-width:0; --slds-c-input-color-border:transparent; }
-.search-button { border:0; background:#e7e000; color:#242424; font-weight:700; border-radius:30px; padding:11px 23px; cursor:pointer; }
-.search-button:disabled { opacity:.6; cursor:not-allowed; }
-.content { padding-top:44px; padding-bottom:60px; }
-h2 { font-size:25px; margin:0 0 20px; }
-.section-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.faq-card,.result-card { border:1px solid #d9dce7; border-radius:13px; background:#fff; margin-bottom:13px; overflow:hidden; }
-.faq-question { display:flex; justify-content:space-between; align-items:center; width:100%; padding:23px 26px; background:transparent; border:0; cursor:pointer; font-size:17px; font-weight:600; text-align:left; color:#242435; gap:16px; }
-.faq-question span:last-child { color:#4d49aa; font-size:22px; }
-.faq-answer { border-top:1px solid #e6e8f0; padding:15px 26px 22px; color:#62697a; line-height:1.65; }
-.faq-answer p { margin-top:0; }
-.result-card { padding:20px 25px; }
-.result-card p,.result-count { color:#62697a; line-height:1.5; }
-.article-link,.text-button { background:none; border:0; padding:0; color:#35319a; cursor:pointer; text-align:left; font-weight:600; }
-.article-link { font-size:17px; }
-button:focus-visible { outline:3px solid #6055d6; outline-offset:3px; }
-@media(max-width:600px) { .hero { padding:35px 0; } .content { padding-top:28px; } .faq-question { padding:18px; font-size:15px; } .faq-answer { padding:15px 18px; } .search-button { padding:10px 15px; } }
+@media(max-width:600px) { .hero { padding:35px 0 20px; } }

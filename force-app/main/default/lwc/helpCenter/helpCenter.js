@@ -1,33 +1,7 @@
-import { LightningElement, wire } from 'lwc';
-import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
-import getFaqs from '@salesforce/apex/HelpCenterController.getFaqs';
-import searchArticles from '@salesforce/apex/HelpCenterController.searchArticles';
+import { LightningElement } from 'lwc';
 
-export default class HelpCenter extends NavigationMixin(LightningElement) {
-    searchTerm = '';
-    results = [];
-    faqs = [];
-    hasSearched = false;
-    isLoading = false;
-    errorMessage = '';
-    faqError = '';
-    searchSequence = 0;
-    pageReferenceType = '';
-
-    @wire(CurrentPageReference)
-    wiredPageReference(pageRef) {
-        this.pageReferenceType = pageRef?.type || '';
-    }
-
-    @wire(getFaqs)
-    wiredFaqs({ data, error }) {
-        if (data) {
-            this.faqs = data.map(faq => ({ ...faq, expanded: false, symbol: '+' }));
-            this.faqError = '';
-        } else if (error) {
-            this.faqError = 'Unable to load frequently asked questions.';
-        }
-    }
+export default class HelpCenter extends LightningElement {}
+/*
     handleInput(event) { this.searchTerm = event.target.value; }
     async handleSearch(event) {
         event.preventDefault();
@@ -78,4 +52,4 @@ export default class HelpCenter extends NavigationMixin(LightningElement) {
     get resultCount() { return this.results.length; }
     get hasError() { return Boolean(this.errorMessage); }
     get showInlineFaq() { return false; }
-}
+}*/
