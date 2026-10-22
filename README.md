@@ -45,12 +45,15 @@ The `portalHeader` LWC provides a responsive shared header. Guests see **Home**,
 
 ## INDOT Build Your Own (LWR) theme layout
 
-The screenshot-inspired `pscPortalTheme` is an LWR **theme layout component** (`lightningCommunity__Theme_Layout`), with:
+The screenshot-inspired `dpsTheme` is an LWR **theme layout component** (`lightningCommunity__Theme_Layout`), with:
 - Shared responsive `c-portal-header` (INDOT branding, Home/Help, guest Log In/Register; Dashboard and account dropdown for signed-in users)
 - Unnamed default `<slot></slot>` for Experience Builder page content
 - Responsive four-column INDOT footer, collapsing to two columns and one column on smaller screens
 - Flexbox sticky-bottom footer behavior for short pages, accessible semantic landmarks and F6 regions
 
-**Activate in Experience Builder:** Deploy `portalHeader` and `pscPortalTheme`, open **Settings → Theme → New Theme Layout**, choose **PSC INDOT Portal Theme** as the theme layout component, and assign the theme layout to the appropriate pages (or as the default where supported). Publish the site. Do **not** add another `portalHeader` in the page header, because this theme already renders it.
+**Activate in Experience Builder:** Deploy `portalHeader` and `dpsTheme`, open **Settings → Theme → New Theme Layout**, choose **DPS Theme** as the theme layout component, and assign the theme layout to the appropriate pages (or as the default where supported). Publish the site. Do **not** add another `portalHeader` in the page header, because this theme already renders it.
 
-**Important setup:** The screenshot's Emergency Permits card is page content, not theme content. Add that card on the Home page separately. The D:PS logo is a CSS/text placeholder, not the official INDOT logo; replace with a licensed/approved logo asset for exact fidelity. Footer application/support routes are provisional: create matching site routes or update the getters in `pscPortalTheme.js`. Existing header route defaults and the logout redirect also need validation in the org. The screenshot's chat bubble is not implemented (requires a configured chat/messaging service). This is source code only; no Salesforce org deployment or pixel-perfect browser validation has been performed.
+**Important setup:** The screenshot's Emergency Permits card is page content, not theme content. Add that card on the Home page separately. The D:PS logo is a CSS/text placeholder, not the official INDOT logo; replace with a licensed/approved logo asset for exact fidelity. Footer application/support routes are provisional: create matching site routes or update the getters in `dpsTheme.js`. Existing header route defaults and the logout redirect also need validation in the org. The screenshot's chat bubble is not implemented (requires a configured chat/messaging service). This is source code only; no Salesforce org deployment or pixel-perfect browser validation has been performed.
+
+### Salesforce LWR layout standards
+The `dpsTheme` component follows [Salesforce's LWR custom layout documentation](https://developer.salesforce.com/docs/platform/exp-cloud-lwr/guide/get-started-layout.html): `lightningCommunity__Theme_Layout` target, unnamed default `<slot></slot>` for page content, a `@slot` JSDoc annotation immediately preceding the LWC class declaration, and `data-f6-region` landmarks. There are no Experience Builder design properties; if added later, declare them under `lightningCommunity__Default` in the metadata file. Assign **DPS Theme** as the page theme layout in Experience Builder after deployment.
