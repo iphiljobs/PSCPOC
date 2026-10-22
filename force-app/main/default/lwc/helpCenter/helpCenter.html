@@ -1,0 +1,49 @@
+<template>
+    <section class="hero"><div class="container">
+        <h1>Help Center</h1>
+        <p>Find answers about permit applications, account setup, and portal features.</p>
+        <form class="search-box" onsubmit={handleSearch}>
+            <lightning-input type="search" variant="label-hidden" label="Search help articles"
+                placeholder="Search help articles..." value={searchTerm} onchange={handleInput}
+                class="search-input"></lightning-input>
+            <button class="search-button" type="submit" disabled={isLoading}>Search</button>
+        </form>
+    </div></section>
+    <main class="container content">
+        <template lwc:if={hasSearched}>
+            <section aria-label="Search results">
+                <div class="section-heading"><h2>Search Results</h2>
+                    <button class="text-button" onclick={clearSearch}>Clear search</button></div>
+                <template lwc:if={isLoading}><lightning-spinner alternative-text="Searching"></lightning-spinner></template>
+                <template lwc:elseif={hasError}><p role="alert">{errorMessage}</p></template>
+                <template lwc:elseif={hasResults}>
+                    <p class="result-count">{resultCount} articles found</p>
+                    <template for:each={results} for:item="article">
+                        <article key={article.id} class="result-card">
+                            <button class="article-link" data-url={article.urlName} onclick={openArticle}>{article.title}</button>
+                            <p>{article.summary}</p>
+                        </article>
+                    </template>
+                </template>
+                <template lwc:else><p>No articles found. Try different search terms.</p></template>
+            </section>
+        </template>
+        <section aria-label="Frequently asked questions">
+            <h2>Frequently Asked Questions</h2>
+            <template lwc:if={faqError}><p role="alert">{faqError}</p></template>
+            <template for:each={faqs} for:item="faq">
+                <div key={faq.id} class="faq-card">
+                    <button class="faq-question" data-id={faq.id}
+                        aria-expanded={faq.expanded} onclick={toggleFaq}>
+                        <span>{faq.title}</span><span aria-hidden="true">{faq.symbol}</span>
+                    </button>
+                    <template lwc:if={faq.expanded}>
+                        <div class="faq-answer"><p>{faq.summary}</p>
+                            <button class="text-button" data-url={faq.urlName} onclick={openArticle}>Read full article →</button>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </section>
+    </main>
+</template>
