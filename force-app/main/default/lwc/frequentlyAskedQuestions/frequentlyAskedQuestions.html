@@ -1,0 +1,20 @@
+<template>
+    <section class="faq-section" aria-label="Frequently asked questions">
+        <h2>Frequently Asked Questions</h2>
+        <template lwc:if={faqError}><p role="alert">{faqError}</p></template>
+        <template for:each={faqs} for:item="faq">
+            <div key={faq.id} class="faq-card">
+                <button class="faq-question" data-id={faq.id} aria-expanded={faq.expanded}
+                    aria-controls={faq.answerId} onclick={toggleFaq}>
+                    <span>{faq.title}</span><span aria-hidden="true">{faq.symbol}</span>
+                </button>
+                <template lwc:if={faq.expanded}>
+                    <div id={faq.answerId} class="faq-answer">
+                        <p>{faq.summary}</p>
+                        <button class="text-button" data-url={faq.urlName} onclick={openArticle}>Read full article</button>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </section>
+</template>

@@ -1,0 +1,10 @@
+:host { display:block; }
+.faq-section h2 { font-size:25px; margin:0 0 20px; }
+.faq-card { border:1px solid #d9dce7; border-radius:13px; background:#fff; margin-bottom:13px; overflow:hidden; }
+.faq-question { display:flex; justify-content:space-between; align-items:center; width:100%; padding:23px 26px; background:transparent; border:0; cursor:pointer; font-size:17px; font-weight:600; text-align:left; color:#242435; gap:16px; }
+.faq-question span:last-child { color:#4d49aa; font-size:22px; }
+.faq-answer { border-top:1px solid #e6e8f0; padding:15px 26px 22px; color:#62697a; line-height:1.65; }
+.faq-answer p { margin-top:0; }
+.text-button { background:none; border:0; padding:0; color:#35319a; cursor:pointer; text-align:left; font-weight:600; }
+button:focus-visible { outline:3px solid #6055d6; outline-offset:3px; }
+@media(max-width:600px) { .faq-question { padding:18px; font-size:15px; } .faq-answer { padding:15px 18px; } }

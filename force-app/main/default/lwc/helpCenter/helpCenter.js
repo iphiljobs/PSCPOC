@@ -77,4 +77,5 @@ export default class HelpCenter extends NavigationMixin(LightningElement) {
     get hasResults() { return this.results.length > 0; }
     get resultCount() { return this.results.length; }
     get hasError() { return Boolean(this.errorMessage); }
+    get showInlineFaq() { return false; }
 }
