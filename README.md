@@ -57,3 +57,25 @@ The screenshot-inspired `dpsTheme` is an LWR **theme layout component** (`lightn
 
 ### Salesforce LWR layout standards
 The `dpsTheme` component follows [Salesforce's LWR custom layout documentation](https://developer.salesforce.com/docs/platform/exp-cloud-lwr/guide/get-started-layout.html): `lightningCommunity__Theme_Layout` target, unnamed default `<slot></slot>` for page content, a `@slot` JSDoc annotation immediately preceding the LWC class declaration, and `data-f6-region` landmarks. There are no Experience Builder design properties; if added later, declare them under `lightningCommunity__Default` in the metadata file. Assign **DPS Theme** as the page theme layout in Experience Builder after deployment.
+
+## Generic Search Data Table
+
+`genericSearchDataTable` is a configurable LWC backed by `GenericSearchDataTableController` Apex. Add **Generic Search Data Table** in Experience Builder (LWR) or Lightning App Builder. Example configuration:
+
+| Property | Example |
+| --- | --- |
+| Object API Name | `Account` |
+| Display Fields (CSV) | `Name,Phone,Industry` |
+| Search Fields (CSV) | `Name,Phone` |
+| Page Size | `20` |
+
+Search fields are limited to supported scalar text types (String, Email, Phone, URL); field API names must be direct fields (no relationship paths). Display fields are rendered as text. Search uses OR-matched, case-insensitive SOQL LIKE with escaped wildcards and 350ms debounce. Results are sorted by Id and support Salesforce's 2,000-row OFFSET limit; narrow the search to page deeper. A View row action navigates to the standard record page, which must be available to the user in the site.
+
+**Security:** The controller validates the object and fields using Describe, runs `with sharing` and `AccessLevel.USER_MODE` queries, and limits search fields and page size. Administrators must explicitly grant appropriate object/field permissions and Apex class access to authorized profiles/permission sets. Do not expose sensitive objects to guest users. The component does not grant permissions.
+
+**Deploy and test:**
+```bash
+sf project deploy start --source-dir force-app/main/default/classes/GenericSearchDataTableController.cls --source-dir force-app/main/default/classes/GenericSearchDataTableControllerTest.cls --source-dir force-app/main/default/lwc/genericSearchDataTable --target-org YOUR_ORG_ALIAS
+sf apex run test --tests GenericSearchDataTableControllerTest --target-org YOUR_ORG_ALIAS --result-format human
+```
+The source was committed to GitHub but has **not** been deployed or compiled against a Salesforce org.
